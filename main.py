@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-GitHub Trending 热门仓库助手 v3.0
+GitHub Trending 热门仓库助手 v3.1（全字段安全修复版）
 Cherry Studio Skill
 功能：拉取热门仓库详情并归纳整理 | 定时每日09:00推送 | 保存记录到TXT
 """
@@ -9,7 +9,8 @@ Cherry Studio Skill
 import requests
 import json
 import os
-from datetime import datetime
+import time
+from datetime import datetime, timedelta
 from collections import Counter
 
 # ============== 配置区 ==============
@@ -65,7 +66,6 @@ class GitHubTrending:
             return None
     
     def get_date(self, days_ago):
-        from datetime import timedelta
         date = datetime.now() - timedelta(days=days_ago)
         return date.strftime("%Y-%m-%d")
     
@@ -82,8 +82,14 @@ class GitHubTrending:
         return Counter(languages)
     
     def analyze_license(self, repos):
-        """分析许可证分布"""
-        licenses = [r.get("license", {}).get("name", "无许可证") for r in repos]
+        """分析许可证分布（修复版）"""
+        licenses = []
+        for r in repos:
+            license_info = r.get("license")
+            if license_info:
+                licenses.append(license_info.get("name", "无许可证"))
+            else:
+                licenses.append("无许可证")
         return Counter(licenses)
     
     def analyze_topics(self, repos):
@@ -95,9 +101,9 @@ class GitHubTrending:
         return Counter(all_topics).most_common(10)
     
     def get_repo_category(self, repo):
-        """根据描述和主题判断仓库分类"""
-        name = repo.get("name", "").lower()
-        desc = repo.get("description", "").lower()
+        """根据描述和主题判断仓库分类（修复None问题）"""
+        name = repo.get("name", "").lower() if repo.get("name") else ""
+        desc = repo.get("description", "").lower() if repo.get("description") else ""
         topics = repo.get("topics", [])
         
         combined = " ".join([name, desc] + topics).lower()
@@ -195,7 +201,7 @@ class GitHubTrending:
 """
     
     def format_repos_list(self, repos):
-        """格式化仓库列表详情"""
+        """格式化仓库列表详情（修复None问题）"""
         if not repos:
             return ""
         
@@ -211,7 +217,7 @@ class GitHubTrending:
             stars = self.format_number(repo.get("stargazers_count", 0))
             forks = self.format_number(repo.get("forks_count", 0))
             language = repo.get("language") or "-"
-            license_name = repo.get("license", {}).get("name", "无")
+            license_name = repo.get("license", {}).get("name", "无") if repo.get("license") else "无"
             issues = repo.get("open_issues_count", 0)
             url = repo.get("html_url", "")
             category = self.get_repo_category(repo)
@@ -396,5 +402,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import time
     main()
