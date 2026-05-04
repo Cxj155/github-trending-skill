@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-GitHub Trending 热门仓库助手 v2.0
+GitHub Trending 热门仓库助手 v3.0
 Cherry Studio Skill
-功能：拉取热门仓库详情并归纳整理
+功能：拉取热门仓库详情并归纳整理 | 定时每日09:00推送 | 保存记录到TXT
 """
 
 import requests
 import json
+import os
 from datetime import datetime
 from collections import Counter
 
 # ============== 配置区 ==============
 TRIGGER_WORDS = ["GitHub热点", "今日热门仓库", "热门仓库", "GitHub trending"]
 DEFAULT_LANGUAGE = "all"
+PUSH_TIME = "09:00"  # 定时推送时间（北京时间）
+SAVE_DIR = "github_trending_logs"  # 保存目录
 # ============== 配置区 ==============
 
 class GitHubTrending:
@@ -25,7 +28,7 @@ class GitHubTrending:
             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
         }
     
-    def fetch_trending(self, language=None, days=7, limit=10):
+    def fetch_trending(self, language=None, days=7, limit=15):
         """获取GitHub热门仓库"""
         lang = language if language else "all"
         query = f"created:>{self.get_date(days)}"
@@ -49,6 +52,7 @@ class GitHubTrending:
             response.raise_for_status()
             return response.json().get("items", [])
         except requests.exceptions.RequestException as e:
+            print(f"❌ 请求失败: {e}")
             return None
     
     def fetch_repo_details(self, repo_url):
@@ -124,26 +128,16 @@ class GitHubTrending:
         if not repos:
             return None
         
-        # 基本统计
         total_stars = sum(r.get("stargazers_count", 0) for r in repos)
         total_forks = sum(r.get("forks_count", 0) for r in repos)
         avg_stars = total_stars // len(repos)
         
-        # 语言分布
         lang_dist = self.analyze_language(repos)
-        top_langs = lang_dist.most_common(5)
-        
-        # 许可证分布
         license_dist = self.analyze_license(repos)
-        
-        # 热门主题
         top_topics = self.analyze_topics(repos)
-        
-        # 分类统计
         categories = [self.get_repo_category(r) for r in repos]
         cat_dist = Counter(categories)
         
-        # 最新创建
         repos_sorted = sorted(repos, key=lambda x: x.get("created_at", ""), reverse=True)
         newest = repos_sorted[0] if repos_sorted else None
         
@@ -151,7 +145,8 @@ class GitHubTrending:
             "total_stars": total_stars,
             "total_forks": total_forks,
             "avg_stars": avg_stars,
-            "top_languages": top_langs,
+            "repo_count": len(repos),
+            "top_languages": lang_dist.most_common(5),
             "licenses": license_dist.most_common(3),
             "topics": top_topics,
             "categories": cat_dist.most_common(5),
@@ -165,41 +160,30 @@ class GitHubTrending:
         
         lang_display = f"【{language}】" if language and language != "all" else "【全语言】"
         
-        # 语言分布图
         lang_bar = ""
         for lang, count in analysis["top_languages"]:
             bar = "█" * count
             lang_bar += f"   {lang}: {bar} ({count})\n"
         
-        # 分类分布
         cat_bar = ""
         for cat, count in analysis["categories"]:
             cat_bar += f"   {cat} {count}个\n"
         
-        # 热门主题
         topics_str = "、".join([t[0] for t in analysis["topics"][:8]]) or "暂无"
         
-        # 最新仓库
         newest = analysis.get("newest_repo", {})
         newest_name = newest.get("full_name", "未知")
         newest_time = newest.get("created_at", "")[:10] if newest else "未知"
         
-        analysis_text = f"""
-╔══════════════════════════════════════════════════════╗
-║  📊 GitHub 热门仓库数据分析报告 {lang_display}
-║  🕐 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-╚══════════════════════════════════════════════════════╝
-
+        return f"""
 📈 【基础统计】
-   仓库总数: {len(analysis['top_languages']) * 2 if analysis else 0} 个
+   仓库总数: {analysis['repo_count']} 个
    ⭐ 总星标: {self.format_number(analysis['total_stars'])}
    🍴 总 forks: {self.format_number(analysis['total_forks'])}
    📊 平均星标: {self.format_number(analysis['avg_stars'])}
 
 🌐 【语言分布】
-{lang_bar}
-
-📂 【仓库分类】
+{lang_bar}📂 【仓库分类】
 {cat_bar}
 
 🏷️ 【热门主题】
@@ -209,7 +193,6 @@ class GitHubTrending:
    📦 {newest_name}
    ⏰ 创建时间: {newest_time}
 """
-        return analysis_text
     
     def format_repos_list(self, repos):
         """格式化仓库列表详情"""
@@ -279,6 +262,7 @@ class GitHubTrending:
         
         return header + analysis_section + list_section + footer
 
+
 def parse_command(text):
     """解析用户命令，提取语言参数"""
     text = text.strip()
@@ -308,38 +292,109 @@ def parse_command(text):
     
     return None
 
+
 def github_trending_handler(text):
     """处理GitHub热门请求"""
     trending = GitHubTrending()
     language = parse_command(text)
     
-    # 获取热门仓库
     repos = trending.fetch_trending(language=language, days=7, limit=15)
     
     if not repos:
         return "❌ 网络请求失败，请检查网络后重试"
     
-    # 分析数据
     analysis = trending.analyze_repos(repos)
     
-    # 生成完整报告
     return trending.format_full_report(repos, analysis, language)
 
-# ==================== 主程序 ====================
-if __name__ == "__main__":
+
+def save_to_file(content, filename=None):
+    """保存内容到文件"""
+    # 创建保存目录
+    if not os.path.exists(SAVE_DIR):
+        os.makedirs(SAVE_DIR)
+    
+    # 生成文件名
+    if not filename:
+        now = datetime.now()
+        filename = f"github_trending_{now.strftime('%Y%m%d_%H%M%S')}.txt"
+    
+    filepath = os.path.join(SAVE_DIR, filename)
+    
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f"✅ 已保存到: {filepath}")
+        return filepath
+    except Exception as e:
+        print(f"❌ 保存失败: {e}")
+        return None
+
+
+def daily_push():
+    """每日定时推送任务"""
+    print("\n" + "="*60)
+    print(f"📢 定时任务触发 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("="*60)
+    
+    # 执行"今日热门仓库"指令
+    result = github_trending_handler("今日热门仓库")
+    
+    # 打印到控制台
+    print(result)
+    
+    # 保存到文件
+    now = datetime.now()
+    filename = f"github_trending_{now.strftime('%Y%m%d')}_daily.txt"
+    save_to_file(result, filename)
+    
+    print(f"\n📌 每日推送完成 - {now.strftime('%Y-%m-%d %H:%M:%S')}")
+    print("="*60 + "\n")
+
+
+def run_schedule():
+    """运行定时任务"""
+    import schedule
+    
+    print("="*60)
+    print("🚀 GitHub Trending 定时推送服务已启动")
+    print(f"⏰ 定时推送时间: 每天 {PUSH_TIME} (北京时间)")
+    print(f"📁 日志保存目录: ./{SAVE_DIR}/")
+    print("="*60)
+    
+    # 设置定时任务
+    schedule.every().day.at(PUSH_TIME).do(daily_push)
+    
+    print(f"\n✅ 已设置每日 {PUSH_TIME} 自动推送")
+    print("📌 按 Ctrl+C 退出程序\n")
+    
+    # 主循环
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
+
+
+def main():
+    """主程序入口"""
     import sys
     
+    # 检查命令行参数
     if len(sys.argv) > 1:
-        # 命令行模式
+        # 命令行模式：处理用户请求
         user_input = " ".join(sys.argv[1:])
+        print(f"\n🔍 处理请求: {user_input}\n")
         result = github_trending_handler(user_input)
         print(result)
-    else:
-        # 测试模式
-        print("🚀 GitHub Trending 深度分析助手已启动")
-        print("="*60)
         
-        # 测试全部语言
-        print("\n📌 测试: 今日热门仓库")
-        result = github_trending_handler("今日热门仓库")
-        print(result)
+        # 保存到文件
+        now = datetime.now().strftime('%Y%m%d_%H%M%S')
+        save_to_file(result, f"github_trending_{now}.txt")
+        
+    else:
+        # 默认模式：运行定时服务
+        run_schedule()
+
+
+if __name__ == "__main__":
+    import time
+    main()
