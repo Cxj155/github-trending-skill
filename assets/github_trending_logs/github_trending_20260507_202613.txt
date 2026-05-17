@@ -1,0 +1,223 @@
+
+╔══════════════════════════════════════════════════════╗
+║  🐙 GitHub 热门仓库深度分析报告
+║  📅 2026-05-07 20:26 | 语言: 全部
+╚══════════════════════════════════════════════════════╝
+
+📈 【基础统计】
+   仓库总数: 15 个
+   ⭐ 总星标: 13.2K
+   🍴 总 forks: 939
+   📊 平均星标: 878
+
+🌐 【语言分布】
+   Python: █████ (5)
+   TypeScript: ███ (3)
+   Swift: ██ (2)
+   JavaScript: ██ (2)
+   Jupyter Notebook: █ (1)
+📂 【仓库分类】
+   🤖 AI/ML 9个
+   📦 通用 4个
+   ⚙️ 后端/API 1个
+   🛠️ 工具类 1个
+
+
+🏷️ 【热门主题】
+   llm、python、apple-silicon、hardware-info、iokit、mac-app、macos、menubar
+
+🆕 【最新仓库】
+   📦 strukto-ai/mirage
+   ⏰ 创建时间: 2026-05-06
+
+╔══════════════════════════════════════════════════════╗
+║  📋 热门仓库详情列表
+╚══════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #1 darrylmorley/whatcable 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 macOS menu bar app that tells you, in plain English, what each USB-C cable plugged into your Mac can actually do
+├──────────────────────────────────────────────────────┤
+│ ⭐ 2.1K | 🍴 42 | 🐛 8 | 📄 MIT License
+│ 💻 Swift | 🏷️ `apple-silicon` `hardware-info` `iokit` `mac-app` `macos`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/darrylmorley/whatcable
+│ 🌐 https://whatcable.uk/
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #2 aattaran/deepclaude ⚙️ 后端/API
+├──────────────────────────────────────────────────────┤
+│ 📝 Use Claude Code's autonomous agent loop with DeepSeek V4 Pro, OpenRouter, or any Anthropic-compatible backend. Same UX, 17x cheaper.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 1.5K | 🍴 82 | 🐛 19 | 📄 MIT License
+│ 💻 JavaScript | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/aattaran/deepclaude
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #3 mattpocock/dictionary-of-ai-coding 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 AI coding jargon, explained in plain English.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 1.2K | 🍴 142 | 🐛 2 | 📄 无
+│ 💻 TypeScript | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/mattpocock/dictionary-of-ai-coding
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #4 crafter-station/petdex 📦 通用
+├──────────────────────────────────────────────────────┤
+│ 📝 Public gallery of animated Codex pets
+├──────────────────────────────────────────────────────┤
+│ ⭐ 900 | 🍴 41 | 🐛 6 | 📄 MIT License
+│ 💻 TypeScript | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/crafter-station/petdex
+│ 🌐 https://petdex.crafter.run
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #5 XBuilderLAB/cheat-on-content 📦 通用
+├──────────────────────────────────────────────────────┤
+│ 📝 Content is already a cheat-code race—whoever cracks the patterns first wins the traffic. Your auto-evolving ops expert that learns YOUR account, not the global average. The Claude Code workflow behind 1M followers in 1 month.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 895 | 🍴 191 | 🐛 5 | 📄 MIT License
+│ 💻 Python | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/XBuilderLAB/cheat-on-content
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #6 vibeforge1111/keep-codex-fast 📦 通用
+├──────────────────────────────────────────────────────┤
+│ 📝 A backup-first Codex skill for keeping local Codex state fast, clean, and recoverable.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 844 | 🍴 50 | 🐛 2 | 📄 MIT License
+│ 💻 Python | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/vibeforge1111/keep-codex-fast
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #7 yaojingang/yao-open-prompts 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 Yao Open Prompts：中文 AI 提示词库，覆盖工作、学习、内容、营销和生活场景
+├──────────────────────────────────────────────────────┤
+│ ⭐ 842 | 🍴 117 | 🐛 0 | 📄 Other
+│ 💻 Python | 🏷️ `ai` `chinese-prompts` `geo` `prompt-engineering` `prompts`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/yaojingang/yao-open-prompts
+│ 🌐 https://yaojingang.github.io/yao-open-prompts/
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #8 jherrodthomas/automotive-skills-suite 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 100+ installable Claude skills covering Engineering areas such as, ISO 26262 functional safety, ISO/SAE 21434 cybersecurity, ISO 21448 SOTIF, AIAG-VDA quality (APQP/PPAP/FMEA), Automotive SPICE, and continuous improvement tools — every builder paired with a confirmation reviewer.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 827 | 🍴 15 | 🐛 0 | 📄 MIT License
+│ 💻 - | 🏷️ `apqp` `aspice` `automotive` `autosar` `engineering`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/jherrodthomas/automotive-skills-suite
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #9 tddworks/baguette 🛠️ 工具类
+├──────────────────────────────────────────────────────┤
+│ 📝 Headless iOS Simulator manager/farm + host-side input injection for iOS 26 — taps, swipes, multi-finger gestures, and 60 fps streaming
+├──────────────────────────────────────────────────────┤
+│ ⭐ 716 | 🍴 27 | 🐛 1 | 📄 Apache License 2.0
+│ 💻 Swift | 🏷️ `agent` `cli` `devicefarm` `ios` `simulator`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/tddworks/baguette
+│ 🌐 https://tddworks.github.io/baguette/
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #10 Kappaemme-git/codex-startup-pressure-test-skill 📦 通用
+├──────────────────────────────────────────────────────┤
+│ 📝 暂无描述
+├──────────────────────────────────────────────────────┤
+│ ⭐ 661 | 🍴 58 | 🐛 0 | 📄 MIT License
+│ 💻 JavaScript | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/Kappaemme-git/codex-startup-pressure-test-skill
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #11 raiyanyahya/how-to-train-your-gpt 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 Build a modern LLM from scratch. Every line commented. Explained like we are five.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 631 | 🍴 78 | 🐛 0 | 📄 MIT License
+│ 💻 Jupyter Notebook | 🏷️ `attention-mechanism` `deep-learning` `educational` `from-scratch` `gpt`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/raiyanyahya/how-to-train-your-gpt
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #12 Tommy-yw/RunbookHermes 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 Hermes-native AIOps agent for evidence-driven incident response, approval-gated remediation, and runbook learning.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 530 | 🍴 29 | 🐛 0 | 📄 MIT License
+│ 💻 Python | 🏷️ 
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/Tommy-yw/RunbookHermes
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #13 lightseekorg/tokenspeed 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 TokenSpeed is a speed-of-light LLM inference engine.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 524 | 🍴 29 | 🐛 9 | 📄 MIT License
+│ 💻 Python | 🏷️ `blackwell` `deepseek` `gpt-oss` `kimi` `lightseek`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/lightseekorg/tokenspeed
+│ 🌐 https://lightseek.org/blog/lightseek-tokenspeed.html
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #14 jherrodthomas/robotics-skills-suite 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 76 audit-ready Claude skills automating the industrial robot, cobot, AMR, ROS2, V&V, AI/ML, and IEC 62443 lifecycle. 38 builder + reviewer pairs anchored to ISO 10218, 13849, 62061, 12100, 9283, 15066, 3691-4, and IEC 62443.
+├──────────────────────────────────────────────────────┤
+│ ⭐ 513 | 🍴 14 | 🐛 0 | 📄 MIT License
+│ 💻 - | 🏷️ `amr` `anthropic` `ce-marking` `claude` `claude-skills`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/jherrodthomas/robotics-skills-suite
+│ 🌐 无官网
+└──────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────┐
+│ 🔷 #15 strukto-ai/mirage 🤖 AI/ML
+├──────────────────────────────────────────────────────┤
+│ 📝 A Unified Virtual Filesystem For AI Agents
+├──────────────────────────────────────────────────────┤
+│ ⭐ 490 | 🍴 24 | 🐛 2 | 📄 Apache License 2.0
+│ 💻 TypeScript | 🏷️ `agent-sandbox` `agent-tools` `ai-agents` `bash` `claude-code`
+├──────────────────────────────────────────────────────┤
+│ 🔗 https://github.com/strukto-ai/mirage
+│ 🌐 https://www.strukto.ai/mirage
+└──────────────────────────────────────────────────────┘
+
+
+╔══════════════════════════════════════════════════════╗
+║  💡 使用提示
+║  • 指定语言：「Python的GitHub热点」
+║  • 支持语言：Python/JavaScript/TypeScript/Go/Java等
+║  • 数据来源：GitHub API (7天内新建仓库TOP排序)
+╚══════════════════════════════════════════════════════╝
